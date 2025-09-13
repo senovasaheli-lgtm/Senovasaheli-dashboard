@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Employee Dashboard</title>
+<style>
+  body{font-family:system-ui,Segoe UI,Roboto,Arial;margin:0;background:#f4f6f8;display:flex;min-height:100vh;align-items:center;justify-content:center}
+  .card{background:#fff;padding:28px;border-radius:12px;box-shadow:0 6px 20px rgba(20,30,40,.08);width:480px;max-width:92%}
+  h1{font-size:22px;margin:0 0 14px}
+  .logout{margin-top:12px;padding:10px 18px;border-radius:8px;border:0;background:#ef4444;color:#fff;font-weight:600;cursor:pointer}
+</style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="welcomeText">Welcome!</h1>
+    <p>This is the employee dashboard page.</p>
+    <button id="logoutBtn" class="logout">Log out</button>
+  </div>
+
+<script>
+  const user = localStorage.getItem("loggedInUser");
+  if (!user) {
+    // If no session, send back to login
+    location.href = "index.html";
+  } else {
+    document.getElementById("welcomeText").textContent = "Welcome, " + user + "!";
+  }
+
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+    localStorage.removeItem("loggedInUser");
+    location.href = "index.html";
+  });
+</script>
+</body>
+</html>
